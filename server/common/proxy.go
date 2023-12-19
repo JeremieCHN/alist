@@ -2,10 +2,8 @@ package common
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"net/http"
-	"net/url"
 
 	"github.com/alist-org/alist/v3/internal/model"
 	"github.com/alist-org/alist/v3/internal/net"
@@ -79,6 +77,6 @@ func Proxy(w http.ResponseWriter, r *http.Request, link *model.Link, file model.
 }
 func attachFileName(w http.ResponseWriter, file model.Obj) {
 	fileName := file.GetName()
-	w.Header().Set("Content-Disposition", fmt.Sprintf(`attachment; filename="%s"; filename*=UTF-8''%s`, fileName, url.PathEscape(fileName)))
+	// w.Header().Set("Content-Disposition", fmt.Sprintf(`attachment; filename="%s"; filename*=UTF-8''%s`, fileName, url.PathEscape(fileName)))
 	w.Header().Set("Content-Type", utils.GetMimeType(fileName))
 }
